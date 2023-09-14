@@ -1,9 +1,11 @@
 package org.example;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class ContactManager {
 
+    List<PersonalContact> personalContactList;
     Scanner scanner = new Scanner(System.in);
 
     public ContactManager() {
@@ -45,6 +47,7 @@ public class ContactManager {
     }
 
     private void managePersonalContacts() {
+
         System.out.println("managing personal contacts");
     }
 }
