@@ -23,7 +23,7 @@ public class ContactManager {
                     stopRepeat = true;
                 }
                 case "w" -> {
-                    System.out.println("Managing work contacts.");
+                    manageWorkContacts();
                     stopRepeat = true;
                 }
                 case "q" -> {
@@ -33,6 +33,57 @@ public class ContactManager {
                 default -> System.out.println("invalid option selected. Please enter again.");
             }
 
+        } while (!stopRepeat);
+    }
+
+    public void manageWorkContacts() {
+        WorkContactCategory workContactCategory = new WorkContactCategory();
+
+        boolean stopRepeat = false;
+        System.out.println("""
+                *Managing Work Contacts*
+                Please enter a key to select what you would like to do.
+                a - add a contact
+                r - remove a contact
+                v - view all contacts
+                s - search for a contact
+                q - return to category selection""");
+        do {
+            String userInput = scanner.nextLine();
+            switch (userInput.toLowerCase()) {
+                case "a" -> {
+                    System.out.println("Please enter you new contacts full name");
+                    String name = scanner.nextLine();
+                    System.out.println("Please enter you new contacts email address");
+                    String email = scanner.nextLine();
+                    System.out.println("Please enter you new contacts phone number");
+                    String phoneNumber = scanner.nextLine();
+                    workContactCategory.addContact(name, email, phoneNumber);
+                    stopRepeat = true;
+                }
+                case "r" -> {
+                    System.out.println("Please enter the full name (case-sensitive) of the contact you would like to remove.");
+                    userInput = scanner.nextLine();
+                    workContactCategory.removeContact(userInput);
+                    stopRepeat = true;
+                }
+                case "v" -> {
+                    workContactCategory.viewContacts();
+                    stopRepeat = true;
+                }
+                case "s" -> {
+                    System.out.println("Please enter the name you would like to search");
+                    userInput = scanner.nextLine();
+                    workContactCategory.searchContacts(userInput);
+                    stopRepeat = true;
+                }
+                case "q" -> {
+                    System.out.println("Return to category selection...");
+                    selectCategory();
+                    stopRepeat = true;
+                }
+                default -> System.out.println("invalid option selected. Please enter again.");
+            }
         } while (!stopRepeat);
     }
 
@@ -88,7 +139,7 @@ public class ContactManager {
         } while (!stopRepeat);
     }
 
-    public void pressEnterToReturn(){
+    public void pressEnterToReturn() {
         System.out.println("\nPress enter to continue...");
         scanner.nextLine();
     }
