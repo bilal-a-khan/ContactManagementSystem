@@ -3,8 +3,6 @@ package org.example;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -28,16 +26,15 @@ public class PersonalContactCategory implements ContactCategory {
             fis = new FileInputStream("src/main/resources/Personal.csv");   // points to input file
             fileScanner = new Scanner(fis); // defines Scanner that will read file
 
-            while (fileScanner.hasNextLine()) { // while loop which will keep reading file until there is no next line
-                String input = fileScanner.nextLine();  // stores the current line in a string called input
-                String[] personalContactDetails = input.split(Pattern.quote(","));  // splits input by each "," and stores each part in an array called studentDetails
-                String name = personalContactDetails[0];    // index 0 of the array contain name which is assigned to String name variable
-                String email = personalContactDetails[1];  // index 1 of the array contain date as a String which is parsed to LocalDate dateOfBirth variable using the dateFormatter
-                String phoneNumber = personalContactDetails[2];   // index 2 of the array contain the course name which is assigned to String course variable
-                personalContacts.add(new PersonalContact(name, email, phoneNumber));   // adds a new entry to the array list which is a new object of the Student class. Calls the Student Constructor class in which Input variable are set for each variable
+            while (fileScanner.hasNextLine()) {
+                String input = fileScanner.nextLine();
+                String[] personalContactDetails = input.split(Pattern.quote(","));
+                String name = personalContactDetails[0];
+                String email = personalContactDetails[1];
+                String phoneNumber = personalContactDetails[2];
+                personalContacts.add(new Contact(name, email, phoneNumber));
             }
-            fis.close();    // closes the file input stream to break link (performance and efficiency related)
-            // catch blocks to catch thrown exceptions which are necessary when using the file scanner
+            fis.close();
         } catch (FileNotFoundException fileNotFoundException) {
             System.out.println("No such file exists");
         } catch (IOException e) {
@@ -69,8 +66,20 @@ public class PersonalContactCategory implements ContactCategory {
 
     @Override
     public void searchContacts(String name) {
-//find item in array and print details
-        //or say not found if name does not exist.
+        updateListFromFile();
+        boolean foundResults = false;
+        System.out.println("Searching for contact names containing \"" + name + "\" ...");
+        for (Contact c:personalContacts){
+            if (c.getName().toLowerCase().contains(name)){
+                foundResults = true;
+                System.out.println(c.getName() + " | " + c.getEmail() + " | " + c.getPhoneNumber());
+            }
+        }
+        if (!foundResults){
+            System.out.println("No contacts found.");
+        }
+        contactManager.pressEnterToReturn();
+        contactManager.managePersonalContacts();
     }
 
 
