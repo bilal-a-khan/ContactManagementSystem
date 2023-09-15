@@ -2,14 +2,13 @@ package org.example;
 
 public interface ContactCategory {
 
-    public void addContact();
+    public void addContact(String name, String email, String phoneNumber);
 
 
-    public void removeContact();
+    public void removeContact(String name);
 
     public void viewContacts();
 
-    public void searchContacts();
-
+    public void searchContacts(String name);
 
 }
