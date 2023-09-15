@@ -6,6 +6,5 @@ public class PersonalContact extends Contact {
     }
 
 
-    public void testfunction(){};
 
 }

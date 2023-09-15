@@ -38,7 +38,7 @@ public class ContactManager {
     }
 
 
-    private void managePersonalContacts() {
+    public void managePersonalContacts() {
         PersonalContactCategory personalContactCategory = new PersonalContactCategory();
 
         boolean stopRepeat = false;
@@ -89,6 +89,11 @@ public class ContactManager {
                     break;
             }
         } while (!stopRepeat);
+    }
+
+    public void pressEnterToReturn(){
+        System.out.println("\nPress enter to continue...");
+        scanner.nextLine();
     }
 }
 
