@@ -43,7 +43,6 @@ public class PersonalContactCategory implements ContactCategory {
         try {
             FileWriter fileWriter = new FileWriter("src/main/resources/Personal.csv", true);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-            bufferedWriter.newLine();
             bufferedWriter.write(name + "," + email + "," + phoneNumber);
 
             bufferedWriter.close();
