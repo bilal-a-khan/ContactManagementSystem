@@ -27,7 +27,7 @@ public class WorkContactCategory implements ContactCategory {
                 String name = workContactDetails[0];
                 String email = workContactDetails[1];
                 String phoneNumber = workContactDetails[2];
-                workContacts.add(new Contact(name, email, phoneNumber));
+                workContacts.add(new WorkContact(name, email, phoneNumber));
             }
             bufferedReader.close();
         } catch (FileNotFoundException fileNotFoundException) {

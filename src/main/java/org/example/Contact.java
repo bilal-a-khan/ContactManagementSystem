@@ -2,8 +2,9 @@ package org.example;
 
 public class Contact {
 
-    private String name, email;
-    private String phoneNumber;
+    private final String name;
+    private final String email;
+    private final String phoneNumber;
 
 
     public Contact(String name, String email, String phoneNumber) {

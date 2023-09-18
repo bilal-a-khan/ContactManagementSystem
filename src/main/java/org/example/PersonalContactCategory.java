@@ -27,7 +27,7 @@ public class PersonalContactCategory implements ContactCategory {
                 String name = personalContactDetails[0];
                 String email = personalContactDetails[1];
                 String phoneNumber = personalContactDetails[2];
-                personalContacts.add(new Contact(name, email, phoneNumber));
+                personalContacts.add(new PersonalContact(name, email, phoneNumber));
             }
             bufferedReader.close();
         } catch (FileNotFoundException fileNotFoundException) {
